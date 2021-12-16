@@ -1,0 +1,13 @@
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\FileWire.pdb
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\FileWire.dll.config
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\clrcompression.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\clrjit.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\coreclr.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\mscordaccore.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\D3DCompiler_47_cor3.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\PenImc_cor3.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\PresentationNative_cor3.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\vcruntime140_cor3.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\wpfgfx_cor3.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\sni.dll
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\ClickOnce\FileWire.exe

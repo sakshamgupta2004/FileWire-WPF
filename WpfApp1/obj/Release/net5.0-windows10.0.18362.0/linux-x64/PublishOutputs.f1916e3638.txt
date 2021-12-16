@@ -1,0 +1,3 @@
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\Folder\FileWire.pdb
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\Folder\FileWire.dll.config
+C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\publish\Folder\FileWire

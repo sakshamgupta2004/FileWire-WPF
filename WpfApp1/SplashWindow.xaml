@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfApp1.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="FileWire" Height="400" Width="700"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        fw:AcrylicWindow.Enabled="True"
+        fw:AcrylicWindow.NoiseOpacity="0"
+        fw:AcrylicWindow.ExtendViewIntoTitleBar="False"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
+        fw:AcrylicWindow.TintOpacity="0.2" AllowsTransparency="True" ShowInTaskbar="False" ResizeMode="NoResize" SizeToContent="Manual" Topmost="True" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Opacity="0"
+        >
+    <Grid>
+        <Image 
+               Name="backgroundImage"
+               Opacity="0.5" HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Stretch="UniformToFill"></Image>
+        <Image VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Source="Resources/ic_logo_playstore_without_bg_logo.png"
+               Name="logo"/>
+    </Grid>
+</Window>

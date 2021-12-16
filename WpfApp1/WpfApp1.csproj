@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>WpfApp1.App</StartupObject>
+    <ApplicationIcon>ic_logo-playstore.ico</ApplicationIcon>
+    <Win32Resource />
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>FileWire</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Sugarsnooper</Authors>
+    <PackageIcon>ic_logo_dark_playstore_without_bg.png</PackageIcon>
+    <PackageIconUrl />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ic_logo-playstore.ico" />
+    <None Remove="Resources\arrow.png" />
+    <None Remove="Resources\background.jpeg" />
+    <None Remove="Resources\background_dark.jpg" />
+    <None Remove="Resources\cancel.png" />
+    <None Remove="Resources\cross.png" />
+    <None Remove="Resources\folder.png" />
+    <None Remove="Resources\gear.png" />
+    <None Remove="Resources\ic_logo_dark_playstore_without_bg.png" />
+    <None Remove="Resources\ic_logo_playstore_without_bg.png" />
+    <None Remove="Resources\ic_logo_playstore_without_bg_logo.png" />
+    <None Remove="Resources\list.png" />
+    <None Remove="Resources\nearby.png" />
+    <None Remove="Resources\Pages\404.html" />
+    <None Remove="Resources\Pages\500.html" />
+    <None Remove="Resources\plus-symbol.png" />
+    <None Remove="Resources\scanning.gif" />
+    <None Remove="Resources\scanning_light.gif" />
+    <None Remove="Resources\sharefile.png" />
+    <None Remove="Resources\singleinstance.exe" />
+    <None Remove="Resources\tick.png" />
+    <None Include="..\..\..\..\Desktop\FileTransfer\FileWire\Resources\ic_logo_dark_playstore_without_bg.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.0" />
+    <PackageReference Include="FluentWPF" Version="0.9.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SharpZipLib" Version="1.3.2" />
+    <PackageReference Include="Syroot.Windows.IO.KnownFolders" Version="1.2.3" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+    <PackageReference Include="WinCopies.Util" Version="2.6.1.1" />
+    <PackageReference Include="WinCopies.WindowsAPICodePack.Consts" Version="2.3.0" />
+    <PackageReference Include="WinCopies.WindowsAPICodePack.Win32Native" Version="2.2.0" />
+    <PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+    <PackageReference Include="XamlFlair.WPF" Version="1.2.8" />
+    <PackageReference Include="ZXing.Net" Version="0.16.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ic_logo-playstore.ico" />
+    <Resource Include="Resources\arrow.png" />
+    <Resource Include="Resources\background.jpeg" />
+    <Resource Include="Resources\background_dark.jpg" />
+    <Resource Include="Resources\cancel.png" />
+    <Resource Include="Resources\cross.png" />
+    <Resource Include="Resources\folder.png" />
+    <Resource Include="Resources\gear.png" />
+    <Resource Include="Resources\ic_logo_dark_playstore_without_bg.png" />
+    <Resource Include="Resources\ic_logo_playstore_without_bg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\ic_logo_playstore_without_bg_logo.png" />
+    <Resource Include="Resources\list.png" />
+    <Resource Include="Resources\nearby.png" />
+    <Resource Include="Resources\Pages\404.html" />
+    <Resource Include="Resources\Pages\500.html" />
+    <Resource Include="Resources\plus-symbol.png" />
+    <Resource Include="Resources\scanning.gif" />
+    <Resource Include="Resources\scanning_light.gif" />
+    <Resource Include="Resources\sharefile.png" />
+    <Resource Include="Resources\singleinstance.exe" />
+    <Resource Include="Resources\tick.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>
