@@ -1,4 +1,0 @@
-C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net5.0-windows10.0.18362.0\FileWireBackgroundService.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net5.0-windows10.0.18362.0\FileWireBackgroundService.AssemblyInfoInputs.cache
-C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net5.0-windows10.0.18362.0\FileWireBackgroundService.AssemblyInfo.cs
-C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net5.0-windows10.0.18362.0\FileWireBackgroundService.csproj.CoreCompileInputs.cache

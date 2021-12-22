@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sugarsnooper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e296e64102c6e3b147f93863b42012f33bc05f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0457acc02874f0909de94028132823a037e6e47")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

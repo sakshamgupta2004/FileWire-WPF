@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using ModernWpf.Controls;
 using System.Net.NetworkInformation;
+using Microsoft.Win32;
 
 namespace FileWire
 {
@@ -28,6 +29,7 @@ namespace FileWire
         private MainWindow.ServerListenerClass serverListener;
         private int mobilePort = 1234;
         private string filesJSON = "error";
+        private string productId = "";
         public static string visibleName;
         private ObservableCollection<fileProgressClass> SendingListItems;
 
@@ -37,7 +39,20 @@ namespace FileWire
             this.port = port;
             this.serverListener = serverListenerClass;
             this.SendingListItems = sendingListItems;
-            if (port > 1234)
+            String productId = "55555-00000-99999-ZZZZZ";
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion"))
+                {
+                    productId = key.GetValue("ProductId", "55555-00000-99999-ZZZZZ").ToString();
+                }
+            }
+            catch
+            {
+
+            }
+            this.productId = productId;
+            if (port > 1234 && !isBackground)
             {
                 visibleName = System.Environment.MachineName + " - " + (port - 1234).ToString();
             }
@@ -329,6 +344,11 @@ namespace FileWire
                         headers.Add("Content-Type", "text/plain");
                         contentUTF8 = "<html><title>File Share</title><body>Not Found</body></html>";
                     }
+                }
+              else if (page.StartsWith("getid"))
+                {
+                    headers.Add("Content-Type", "text/plain");
+                        contentUTF8 = "<html><title>File Share</title><body>" + productId + "</body></html>";
                 }
 
               return new HttpResponse() {
