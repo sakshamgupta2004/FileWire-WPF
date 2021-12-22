@@ -22,21 +22,21 @@ namespace FileWire
 {
     public class HTTPSERVER
     {
+        private bool isBackground;
         public static Boolean isConnected = false;
         private int port;
         private MainWindow.ServerListenerClass serverListener;
         private int mobilePort = 1234;
         private string filesJSON = "error";
         public static string visibleName;
-        private Dictionary<string, string> args;
         private ObservableCollection<fileProgressClass> SendingListItems;
-        
-        public HTTPSERVER(string address, int port, ObservableCollection<fileProgressClass> sendingListItems, MainWindow.ServerListenerClass serverListenerClass, Dictionary<string, string> args)
+
+        public HTTPSERVER(string address, int port, ObservableCollection<fileProgressClass> sendingListItems, MainWindow.ServerListenerClass serverListenerClass, bool isBackground = false)
         {
+            this.isBackground = isBackground;
             this.port = port;
             this.serverListener = serverListenerClass;
             this.SendingListItems = sendingListItems;
-            this.args = args;
             if (port > 1234)
             {
                 visibleName = System.Environment.MachineName + " - " + (port - 1234).ToString();
@@ -52,134 +52,136 @@ namespace FileWire
 
 
 
-
-            var t = new Thread(new ThreadStart(() =>
+            if (!isBackground)
             {
-                int i = 0;
-                while (!isConnected)
+                var t = new Thread(new ThreadStart(() =>
                 {
-                    if (i == 5)
+                    int i = 0;
+                    while (!isConnected)
                     {
-                        i = 0;
-                    }
-                    try
-                    {
-                        Thread.Sleep(1000);
-                        String add = "";
-                        System.Net.IPAddress[] ad = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
-                        foreach (System.Net.IPAddress ip in ad)
+                        if (i == 5)
                         {
-                            add += "http://" + ip.ToString() + ":" + port.ToString() + "/\n";
+                            i = 0;
                         }
-                        bool connected;
-                        if (add.Trim(' ').Length == 0)
+                        try
                         {
-                            connected = false;
-                        }
-                        else
-                        {
-                            connected = true;
-                        }
-                        if (connected)
-                        {
-
-                            try
+                            Thread.Sleep(1000);
+                            String add = "";
+                            System.Net.IPAddress[] ad = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
+                            foreach (System.Net.IPAddress ip in ad)
                             {
-                                var Client = new UdpClient();
-                                Client.Client.ReceiveTimeout = 300;
-                                Client.Client.SendTimeout = 300;
-                                string contentUTF8 = "";
-                                if (!isConnected)
-                                {
-                                    AvtarAndName av = new AvtarAndName();
-                                    av.name = visibleName;
-                                    av.avatar = 1.ToString();
-                                    contentUTF8 = "<html><title>File Share</title><body>" + JsonConvert.SerializeObject(av) + "</body></html>";
-                                }
-                                else
-                                {
-                                    contentUTF8 = "<html><title>File Share</title><body>Not Found</body></html>";
-                                }
-                                var RequestData = Encoding.ASCII.GetBytes(add);
-                                var ServerEp = new IPEndPoint(IPAddress.Any, 0);
+                                add += "http://" + ip.ToString() + ":" + port.ToString() + "/\n";
+                            }
+                            bool connected;
+                            if (add.Trim(' ').Length == 0)
+                            {
+                                connected = false;
+                            }
+                            else
+                            {
+                                connected = true;
+                            }
+                            if (connected)
+                            {
 
-                                Client.EnableBroadcast = true;
-                                Client.Send(RequestData, RequestData.Length, new IPEndPoint(IPAddress.Broadcast, (42404 + i)));
-
-                                Client.Close();
-                                System.Net.IPAddress[] ad1 = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
-                                foreach (System.Net.IPAddress ip in ad1)
+                                try
                                 {
-                                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                                    var Client = new UdpClient();
+                                    Client.Client.ReceiveTimeout = 300;
+                                    Client.Client.SendTimeout = 300;
+                                    string contentUTF8 = "";
+                                    if (!isConnected)
                                     {
-
-                                        IPEndPoint local = new IPEndPoint(IPAddress.Parse(ip.ToString()), 0);
-                                        UdpClient udpc = new UdpClient(local);
-                                        udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
-                                        udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, 1);
-
-                                        IPEndPoint target = new IPEndPoint(IPAddress.Broadcast, 42404 + i);
-                                        udpc.Send(RequestData, RequestData.Length, target);
+                                        AvtarAndName av = new AvtarAndName();
+                                        av.name = visibleName;
+                                        av.avatar = 1.ToString();
+                                        contentUTF8 = "<html><title>File Share</title><body>" + JsonConvert.SerializeObject(av) + "</body></html>";
                                     }
-                                }
-
-
-
-
-
-
-
-
-                                foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-                                {
-                                    if (ni.OperationalStatus == OperationalStatus.Up && ni.SupportsMulticast && ni.GetIPProperties().GetIPv4Properties() != null)
+                                    else
                                     {
-                                        int id = ni.GetIPProperties().GetIPv4Properties().Index;
-                                        if (NetworkInterface.LoopbackInterfaceIndex != id)
+                                        contentUTF8 = "<html><title>File Share</title><body>Not Found</body></html>";
+                                    }
+                                    var RequestData = Encoding.ASCII.GetBytes(add);
+                                    var ServerEp = new IPEndPoint(IPAddress.Any, 0);
+
+                                    Client.EnableBroadcast = true;
+                                    Client.Send(RequestData, RequestData.Length, new IPEndPoint(IPAddress.Broadcast, (42404 + i)));
+
+                                    Client.Close();
+                                    System.Net.IPAddress[] ad1 = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
+                                    foreach (System.Net.IPAddress ip in ad1)
+                                    {
+                                        if (ip.AddressFamily == AddressFamily.InterNetwork)
                                         {
-                                            foreach (UnicastIPAddressInformation uip in ni.GetIPProperties().UnicastAddresses)
+
+                                            IPEndPoint local = new IPEndPoint(IPAddress.Parse(ip.ToString()), 0);
+                                            UdpClient udpc = new UdpClient(local);
+                                            udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
+                                            udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, 1);
+
+                                            IPEndPoint target = new IPEndPoint(IPAddress.Broadcast, 42404 + i);
+                                            udpc.Send(RequestData, RequestData.Length, target);
+                                        }
+                                    }
+
+
+
+
+
+
+
+
+                                    foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+                                    {
+                                        if (ni.OperationalStatus == OperationalStatus.Up && ni.SupportsMulticast && ni.GetIPProperties().GetIPv4Properties() != null)
+                                        {
+                                            int id = ni.GetIPProperties().GetIPv4Properties().Index;
+                                            if (NetworkInterface.LoopbackInterfaceIndex != id)
                                             {
-                                                if (uip.Address.AddressFamily == AddressFamily.InterNetwork)
+                                                foreach (UnicastIPAddressInformation uip in ni.GetIPProperties().UnicastAddresses)
                                                 {
-                                                    IPEndPoint local = new IPEndPoint(uip.Address.Address, 0);
-                                                    UdpClient udpc = new UdpClient(local);
-                                                    udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
-                                                    udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, 1);
-                                                    byte[] data = RequestData;
-                                                    IPEndPoint target = new IPEndPoint(IPAddress.Broadcast, 42404 + i);
-                                                    udpc.Send(data, data.Length, target);
+                                                    if (uip.Address.AddressFamily == AddressFamily.InterNetwork)
+                                                    {
+                                                        IPEndPoint local = new IPEndPoint(uip.Address.Address, 0);
+                                                        UdpClient udpc = new UdpClient(local);
+                                                        udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
+                                                        udpc.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, 1);
+                                                        byte[] data = RequestData;
+                                                        IPEndPoint target = new IPEndPoint(IPAddress.Broadcast, 42404 + i);
+                                                        udpc.Send(data, data.Length, target);
+                                                    }
                                                 }
                                             }
                                         }
                                     }
+
+                                }
+                                catch
+                                {
+
                                 }
 
                             }
-                            catch
-                            {
-
-                            }
+                        }
+                        catch
+                        {
 
                         }
+
+                        i++;
                     }
-                    catch
-                    {
-
-                    }
-
-                    i++;
-                }
-            }));
-            t.IsBackground = true;
-            t.Start();
+                }));
+                t.IsBackground = true;
+                t.Start();
 
 
 
 
 
-            var t1 = new Thread(new ThreadStart(runPCDiscoveryServer));
-            t1.IsBackground = true;
-            t1.Start();
+                var t1 = new Thread(new ThreadStart(runPCDiscoveryServer));
+                t1.IsBackground = true;
+                t1.Start();
+            }
         }
         
         public void startSimpleServer()
@@ -314,7 +316,7 @@ namespace FileWire
               else if (page.StartsWith("getAvatarAndName"))
                 {
                     
-                    if (!isConnected) {
+                    if (!isConnected || isBackground) {
                     headers.Add("Content-Type", "text/plain");
                     AvtarAndName av = new AvtarAndName();
                     av.name = visibleName;

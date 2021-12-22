@@ -1,0 +1,14 @@
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\FileWireBackgroundService.exe
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\FileWireBackgroundService.deps.json
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\FileWireBackgroundService.runtimeconfig.json
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\FileWireBackgroundService.dll
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\ref\FileWireBackgroundService.dll
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\bin\Debug\net6.0\FileWireBackgroundService.pdb
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.AssemblyInfoInputs.cache
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.AssemblyInfo.cs
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.csproj.CoreCompileInputs.cache
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.dll
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\ref\FileWireBackgroundService.dll
+C:\Users\Saksham\source\repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.pdb
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\FileWireBackgroundService\obj\Debug\net6.0\FileWireBackgroundService.genruntimeconfig.cache

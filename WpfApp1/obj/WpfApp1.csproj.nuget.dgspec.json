@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
         "projectName": "FileWire",
-        "projectPath": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-        "packagesPath": "C:\\Users\\saksh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\obj\\",
+        "projectPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
+        "packagesPath": "C:\\Users\\Saksham\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\saksh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Saksham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,6 +55,10 @@
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"
+            },
+            "Microsoft.Toolkit.Uwp.Notifications": {
+              "target": "Package",
+              "version": "[7.1.2, )"
             },
             "Microsoft.VisualStudio.Services.Client": {
               "target": "Package",
@@ -132,8 +133,24 @@
           "warn": true,
           "downloadDependencies": [
             {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.13, 5.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
               "name": "Microsoft.Windows.SDK.NET.Ref",
               "version": "[10.0.18362.22, 10.0.18362.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
             }
           ],
           "frameworkReferences": {
@@ -147,7 +164,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

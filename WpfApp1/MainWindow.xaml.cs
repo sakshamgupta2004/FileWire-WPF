@@ -39,6 +39,8 @@ using Console = System.Diagnostics.Trace;
 using Path = System.IO.Path;
 using System.Text.RegularExpressions;
 using DataFormats = System.Windows.DataFormats;
+using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.UI.Notifications;
 
 namespace WpfApp1
 {
@@ -50,6 +52,7 @@ namespace WpfApp1
     
     public partial class MainWindow : AcrylicWindow
     {
+        private const String APP_ID = "Sugarsnooper.FileWire";
 
         private delegate void mainDelegate();
         private static mainDelegate switchToLightTheme = new mainDelegate(setLightColors);
@@ -141,6 +144,8 @@ namespace WpfApp1
         private static int threads;
         private static AvtarAndName connectedInfo;
         private static Preferences preferences;
+        private static ToastNotification progressToast;
+        private static ToastContent progressToastContent;
 
         public static ObservableCollection<NearbyPC> NearbyPCList { get { return _NearbyPCList; } }
         public static ObservableCollection<NearbyPC> _NearbyPCList = new ObservableCollection<NearbyPC>();
@@ -251,6 +256,37 @@ namespace WpfApp1
             var t = new Thread(new ThreadStart(run));
             t.IsBackground = true;
             t.Start();
+          //  progressToast = new ToastContentBuilder();
+
+           /* progressToast.AddText("Receiving Files from " + connectedInfo.name);
+            progressToast.AddVisualChild(new AdaptiveProgressBar()
+            {
+                Title = "Transfer Progress",
+                Value = Double.Parse(overallProgress.ToString())/100.0,
+                ValueStringOverride = overallProgress + "%",
+                Status = "Receiving"
+            });
+            progressToast.Show();*/
+
+
+
+            progressToastContent = new ToastContentBuilder()
+              .AddText("Receiving Files from " + connectedInfo.name)
+              .AddVisualChild(new AdaptiveProgressBar()
+              {
+                  Title = "Transfer Progress",
+                  Value = new BindableProgressBarValue("progressValue"),
+                  ValueStringOverride = new BindableString("progressValueString"),
+                  Status = "Receiving Files"
+              })
+              .GetToastContent();
+            progressToast = new ToastNotification(progressToastContent.GetXml());
+            progressToast.Tag = "receiving-files";
+            progressToast.Data = new NotificationData();
+            progressToast.Data.Values["progressValue"] = "0.0";
+            progressToast.Data.Values["progressValueString"] = "0%";
+            progressToast.Data.SequenceNumber = 0;
+           // ToastNotificationManager.CreateToastNotifier(APP_ID).Show(progressToast);
         }
 
         private static void close()
@@ -302,6 +338,17 @@ namespace WpfApp1
             if (hasErrors)
             {
                 StatusLabel.Text = "Status: Files Transferred with Errors";
+                new ToastContentBuilder()
+                    .AddText(connectedInfo.name)
+                    .AddText("Files Transferred with Errors")
+                    .Show();
+            }
+            else
+            {
+                new ToastContentBuilder()
+                    .AddText(connectedInfo.name)
+                    .AddText("File Transfer Complete")
+                    .Show();
             }
         }
 
@@ -327,7 +374,7 @@ namespace WpfApp1
         }
 
 
-        public MainWindow(Dictionary<string, string> args)
+        public MainWindow(Dictionary<string, string> args, bool isBackground = false)
         {
             MainWindow.args = args;
             //ApplicationDeployment
@@ -428,8 +475,12 @@ namespace WpfApp1
             receivingListView.SelectionMode = System.Windows.Controls.SelectionMode.Single;
             sendingListView.SelectionMode = System.Windows.Controls.SelectionMode.Single;
             int port = GetAvailablePort(1234);
+            if (isBackground)
+            {
+                port = GetAvailablePort(42000);
+            }
             runQRGenerator(port);
-            server = new HTTPSERVER(null, port, SendingFilesListViewItems, new ServerListenerClass(), args);
+            server = new HTTPSERVER(null, port, SendingFilesListViewItems, new ServerListenerClass(), isBackground);
             VisibileNameTextBlock.Text = "Visible as \"" + HTTPSERVER.visibleName + "\"";
             server.startSimpleServer();
             list = new List<MyClass>();
@@ -789,6 +840,10 @@ namespace WpfApp1
             FilesReceivingReceivingSize += e.BytesReceived;
             overallProgress = (int)((FilesReceivingReceivingSize * 100) / FilesReceivingTotalSize);
             
+            //var data = new NotificationData();
+            //data.Values["progressValue"] = (((Double)overallProgress) / 100.0).ToString();
+            //data.Values["progressValueString"] = overallProgress.ToString() + "%";
+            //ToastNotificationManager.CreateToastNotifier(APP_ID).Update(data, "receiving-files");
             try
             {
                 ConnectedViewPanel.Dispatcher.Invoke(() =>
@@ -825,7 +880,10 @@ namespace WpfApp1
             }
         }
 
-
+        public int getThisPCPort()
+        {
+            return MainWindow.port;
+        }
         private void runQRGenerator(int port)
         {
             MainWindow.port = port;
@@ -834,6 +892,7 @@ namespace WpfApp1
             runner.IsBackground = true;
             runner.Start();
         }
+
 
         private void GenerateQRCode()
         {
@@ -1346,6 +1405,7 @@ namespace WpfApp1
                         String s = wb.DownloadString("http://" + iPAddress + ":" + mobilePort.ToString() + "/getAvatarAndName");
                         AvtarAndName na = JsonConvert.DeserializeObject<AvtarAndName>(s.Substring(s.IndexOf("<body>") + 6).Replace("</body></html>", ""));
                         MainWindow.connectedInfo = na;
+                        new ToastContentBuilder().AddText("Connected Succesfully").AddText("Connected with " + connectedInfo.name).Show();
                         label.Dispatcher.Invoke(displayConnectedDeviceInfo);
                     }
                     catch (Exception e)

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="FileWire.exe" version="1.0.0.47" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="FileWire.exe" version="1.0.1.52" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="ic_logo-playstore.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -423,22 +423,22 @@
       <dsig:DigestValue>SdvUQyr14/c8Ldyf/FeEPQz7TwdbM4WsBjNmM46HZwE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FileWire.deps.json" size="112569">
+  <file name="FileWire.deps.json" size="113519">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>E3hzn7SlCgMCcOygsTasMP0UYz45u6ZCKhjgMSWzJkE=</dsig:DigestValue>
+      <dsig:DigestValue>iDQPHHNx1TVjDd9f2DMsIyBs0zMfw3XCKlJRW+5ZTkQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FileWire.dll" size="11776000">
+  <file name="FileWire.dll" size="11781120">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>XDyIEhx/ep2FAWVskSMs/IF8EovISEj5hzxzesKfbow=</dsig:DigestValue>
+      <dsig:DigestValue>SP88wNR4on02lWEn5ievDa51uZ5dOy5WyEAgLxHFMLo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="FileWire.dll.config" size="198">
@@ -450,22 +450,22 @@
       <dsig:DigestValue>wgaOydNmrBcqXjELBjal8RHBy1cB25PYI5mXbnTkDLI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FileWire.exe" size="162304">
+  <file name="FileWire.exe" size="160768">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Tf95NgdNNV5kxnkI9T/7Qj+Po8ZuxeQcO4a/wavCfQc=</dsig:DigestValue>
+      <dsig:DigestValue>5VGtGIkEhm//HyvVbdYJJCx5GWfSHvcl289bALWHzGQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FileWire.runtimeconfig.json" size="154">
+  <file name="FileWire.runtimeconfig.json" size="260">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NiDVPch7SqLL1QtcqAuqPjoBfZ04y3L2kORCla/DP3c=</dsig:DigestValue>
+      <dsig:DigestValue>TAy4UQmrQZe65gulPZpwP3mxUVQNvVse7HGqvBQf5Mo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="FluentWPF.dll" size="212992">
@@ -900,6 +900,15 @@
       <dsig:DigestValue>CZDFSWcXupL6zkrbY4JS52MthduexCSPnodU3G9pBP4=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Microsoft.Toolkit.Uwp.Notifications.dll" size="144080">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>A2Vkpkn0e5IlDf9PIFyNRIBLC0GmnXg71CEtGJ619pQ=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Microsoft.VisualStudio.Services.Common.dll" size="451976">
     <hash>
       <dsig:Transforms>
@@ -918,13 +927,13 @@
       <dsig:DigestValue>PidBsShHDx3EMW5f3rwq5R7nL5Hk4pr8nrBuNSmfokg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Microsoft.Windows.SDK.NET.dll" size="26314104">
+  <file name="Microsoft.Windows.SDK.NET.dll" size="24517520">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>CVjhNdUC5Eco/Hnhoep7cBHEsM0QD0eSEnPV7PO1lp0=</dsig:DigestValue>
+      <dsig:DigestValue>iJzwuN5zZXjyP/oufWMPvkFsplgZyO/3PZZYCj8vjlQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Microsoft.WindowsAPICodePack.dll" size="98304">
@@ -1566,13 +1575,13 @@
       <dsig:DigestValue>NZqE7ku0ekQ46Zm9pKs3UgU0StA+/hV6CCDhROIOuys=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WinRT.Runtime.dll" size="306576">
+  <file name="WinRT.Runtime.dll" size="314248">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QWxENShyweBk8MrfGObWkuLgjRQicG+AgSW5RW6s3aw=</dsig:DigestValue>
+      <dsig:DigestValue>AImGX7kJFxbfbmHw1lqhGYqo4Bb4KsI2ADPbloRl2LA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="XamlFlair.WPF.dll" size="199168">

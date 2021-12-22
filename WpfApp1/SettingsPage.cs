@@ -173,7 +173,7 @@ namespace WpfApp1
                 TypeSplitSettingRadioButtons.SelectedIndex = 1;
             }
 
-            if (System.Diagnostics.Process.GetProcessesByName("FileWire").Length > 1)
+            if (System.Diagnostics.Process.GetProcessesByName("FileWire").Length > 2)
             {
                 SettingsDisableCover.Visibility = Visibility.Visible;
             }

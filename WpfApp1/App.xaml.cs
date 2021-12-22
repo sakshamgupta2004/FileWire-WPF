@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using FileWire;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,8 +11,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics.Tracing;
 
 namespace WpfApp1
 {
@@ -20,8 +23,20 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
+        int GetInstanceCount(string ExeName)
+        {
+            Process[] processlist = Process.GetProcessesByName(ExeName);
+            int NoOfInstances = processlist.Count();
+            return NoOfInstances;
+        }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+
+
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            registryKey.SetValue(AppDomain.CurrentDomain.FriendlyName, AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName + ".exe" + " --windowsStartup true");
+            
+            
             string[] args = Environment.GetCommandLineArgs();
             var arguments = new Dictionary<string, string>();
 
@@ -115,7 +130,10 @@ namespace WpfApp1
                     {
                         key.DeleteSubKeyTree("Send via FileWire");
                     }
-                 //   Directory.Delete(new Preferences().settingsDirectory, true);
+                    registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                    registryKey.DeleteValue(AppDomain.CurrentDomain.FriendlyName);
+
+                    //   Directory.Delete(new Preferences().settingsDirectory, true);
 
                 }
                 catch
@@ -124,13 +142,55 @@ namespace WpfApp1
                 }
                 Environment.Exit(Environment.ExitCode);
             }
+            if (arguments.ContainsKey("windowsStartup"))
+            {
+                BackgroundVisibility.run();
+            }
+            else
+            {
+
+
+                string currVersion = "null";
+                using (var key1 = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", true))
+                {
+                    if (key1 != null)
+                    {
+                        foreach (var a in key1.GetSubKeyNames())
+                        {
+                            var key2 = key1.OpenSubKey(a);
+                            if (key2.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName))
+                            {
+                                currVersion = key2.GetValue("DisplayVersion", currVersion).ToString();
+                            }
+                        }
+                    }
+                }
+
+                RegistryKey key = Registry.CurrentUser.CreateSubKey("Software\\FileWire");
+                if (!key.GetValue("CurrentVersion", "1.0.0.0").Equals(currVersion))
+                {
+                    key.SetValue("CurrentVersion", currVersion);
+                    foreach (var process in Process.GetProcessesByName(AppDomain.CurrentDomain.FriendlyName))
+                    {
+                        if (!process.MainModule.FileName.Equals(AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName + ".exe"))
+                        {
+                            process.Kill();
+                        }
+                    }
+                }
+                if (!Debugger.IsAttached)
+                {
+                    if (GetInstanceCount(AppDomain.CurrentDomain.FriendlyName) == 1)
+                        Process.Start(AppDomain.CurrentDomain.FriendlyName, "--windowsStartup true");
+                }
+                Window wnd = new SplashWindow(arguments);
+                wnd.Show();
+            }
 
 
 
 
 
-            Window wnd = new SplashWindow(arguments);
-            wnd.Show();
 
 
         }

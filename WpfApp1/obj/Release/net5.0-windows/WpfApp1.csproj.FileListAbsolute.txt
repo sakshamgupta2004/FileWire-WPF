@@ -66,3 +66,6 @@ C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\Release\net5.0-windows\FileWire.
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\Release\net5.0-windows\FileWire.application
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\obj\Release\net5.0-windows\FileWire.dll.manifest
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\obj\Release\net5.0-windows\FileWire.application
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows\FileWire.dll
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows\ref\FileWire.dll
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows\FileWire.pdb
