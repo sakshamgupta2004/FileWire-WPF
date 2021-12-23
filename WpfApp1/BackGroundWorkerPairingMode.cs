@@ -16,6 +16,7 @@ namespace FileWire
         {
             String productId = "";
             var hiddenwindow = new MainWindow(new Dictionary<string, string>(), true);
+            hiddenwindow.Opacity = 1;
             using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion"))
             {
                 productId = key.GetValue("ProductId", "55555-00000-99999-ZZZZZ").ToString();

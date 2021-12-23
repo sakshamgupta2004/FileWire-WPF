@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WpfApp1"
+    "\\WpfApp1",
+    "\\WpfApp1\\bin"
   ],
   "SelectedNode": "\\WpfApp1\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false

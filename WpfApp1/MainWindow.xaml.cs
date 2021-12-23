@@ -142,6 +142,7 @@ namespace WpfApp1
         private static int pos = 0;
         private static int port = 1234;
         private static int threads;
+        private static int threadsMade = 0;
         private static AvtarAndName connectedInfo;
         private static Preferences preferences;
         private static ToastNotification progressToast;
@@ -172,56 +173,65 @@ namespace WpfApp1
 
         private static void hideQrCodeAndShowUI()
         {
-            if (dialog != null)
+            if (window.IsVisible)
             {
-                if (dialog.IsVisible)
+                if (dialog != null)
                 {
-                    dialog.Hide();
+                    if (dialog.IsVisible)
+                    {
+                        dialog.Hide();
+                    }
                 }
+                settingsView.Visibility = Visibility.Hidden;
+                ConnectedViewPanel.Visibility = Visibility.Visible;
+                if (window.Width <= 750)
+                    receivingListView.Visibility = Visibility.Collapsed;
+                var e = new System.Windows.Size(window.ActualWidth, window.ActualHeight);
+                windowSizeChange(e);
             }
-            settingsView.Visibility = Visibility.Hidden;
-            ConnectedViewPanel.Visibility = Visibility.Visible;
-            if (window.Width <= 750)
-                receivingListView.Visibility = Visibility.Collapsed;
-            var e = new System.Windows.Size(window.ActualWidth, window.ActualHeight);
-            windowSizeChange(e);
             threads = preferences.getThreads();
             if (threads != 1)
             {
-                FileNameLabel.Text = "File Progresses";
-                fileProgressPercentageLabel.Visibility = Visibility.Hidden;
-                fileRelativeProgress.Visibility = Visibility.Hidden;
-                ProgressBar1.Visibility = Visibility.Collapsed;
-
-                MultiThreadFileProgressBars = new ProgressBar[threads];
-                for (int i = 0; i < threads; i++)
+                if (window.IsVisible)
                 {
-                    multiThreadFileProgressBarsPanel.ColumnDefinitions.Add(new ColumnDefinition());
-                    ProgressBar progressBar = new ProgressBar()
+
+                    FileNameLabel.Text = "File Progresses";
+                    fileProgressPercentageLabel.Visibility = Visibility.Hidden;
+                    fileRelativeProgress.Visibility = Visibility.Hidden;
+                    ProgressBar1.Visibility = Visibility.Collapsed;
+
+                    MultiThreadFileProgressBars = new ProgressBar[threads];
+                    for (int i = 0; i < threads; i++)
                     {
-                        Height = 8,
-                        HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
-                        VerticalAlignment = VerticalAlignment.Stretch,
-                        Value = 0,
-                        Foreground = AccentColors.ImmersiveSystemAccentBrush,
-                        Margin = new Thickness { 
-                            Bottom = 0,
-                            Top = 0,
-                            Right = 2,
-                            Left = 2
-                        }
-                    };
-                    Grid.SetColumn(progressBar, i);
-                    MultiThreadFileProgressBars[i] = progressBar;
-                    multiThreadFileProgressBarsPanel.Children.Add(progressBar);
+                        multiThreadFileProgressBarsPanel.ColumnDefinitions.Add(new ColumnDefinition());
+                        ProgressBar progressBar = new ProgressBar()
+                        {
+                            Height = 8,
+                            HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
+                            VerticalAlignment = VerticalAlignment.Stretch,
+                            Value = 0,
+                            Foreground = AccentColors.ImmersiveSystemAccentBrush,
+                            Margin = new Thickness
+                            {
+                                Bottom = 0,
+                                Top = 0,
+                                Right = 2,
+                                Left = 2
+                            }
+                        };
+                        Grid.SetColumn(progressBar, i);
+                        MultiThreadFileProgressBars[i] = progressBar;
+                        multiThreadFileProgressBarsPanel.Children.Add(progressBar);
+                    }
                 }
             }
             else
             {
+                if (window.IsVisible)
                 multiThreadFileProgressBarsPanel.Visibility = Visibility.Collapsed;
             }
 
-            for (int i = 0; i < threads; i++)
+            for (int i = threadsMade; i < threads; i++)
             {
                 var list = new ObservableCollection<MyClass>();
                 var threadNum = i;
@@ -243,6 +253,7 @@ namespace WpfApp1
                     FileCurrentReceivedSize = 0,
                     CommandToDownload = true
                 });
+                threadsMade++;
             }
 
         }
@@ -296,39 +307,47 @@ namespace WpfApp1
 
         private static void displayConnectedInfo()
         {
-            label.Text = "Connected with " + connectedInfo.name;
+            if (window.IsVisible)
+              label.Text = "Connected with " + connectedInfo.name;
         }
 
         private static void changeDisplayedFileName()
         {
+            if (window.IsVisible)
                 FileNameLabel.Text = currFileName;
         }
 
         private static void setStatusTransferInProgress()
         {
-            StatusLabel.Text = "Status: File Transfer in Progress";
-            if (threads != 1)
+            if (window.IsVisible)
             {
-                FileNameLabel.Text = "File Progresses";
+                StatusLabel.Text = "Status: File Transfer in Progress";
+                if (threads != 1)
+                {
+                    FileNameLabel.Text = "File Progresses";
+                }
             }
         }
 
         private static void disableProgress()
         {
-            ProgressBar1.Value = 100;
-            ProgressBar2.Value = 100;
-            if (MultiThreadFileProgressBars != null)
+            if (window.IsVisible)
             {
-                foreach (var progressBar in MultiThreadFileProgressBars)
+                ProgressBar1.Value = 100;
+                ProgressBar2.Value = 100;
+                if (MultiThreadFileProgressBars != null)
                 {
-                    progressBar.Value = 100;
+                    foreach (var progressBar in MultiThreadFileProgressBars)
+                    {
+                        progressBar.Value = 100;
+                    }
                 }
-            }
 
-            overallProgressPercentageLabel.Text = "100%";
-            fileProgressPercentageLabel.Text = "100%";
-            fileRelativeProgress.Text = "";
-            StatusLabel.Text = "Status: File Transfer Complete";
+                overallProgressPercentageLabel.Text = "100%";
+                fileProgressPercentageLabel.Text = "100%";
+                fileRelativeProgress.Text = "";
+                StatusLabel.Text = "Status: File Transfer Complete";
+            }
             bool hasErrors = false;
 
             foreach (var item in ReceivingFilesListViewItems)
@@ -337,6 +356,7 @@ namespace WpfApp1
             }
             if (hasErrors)
             {
+                if (window.IsVisible)
                 StatusLabel.Text = "Status: Files Transferred with Errors";
                 new ToastContentBuilder()
                     .AddText(connectedInfo.name)
@@ -359,18 +379,24 @@ namespace WpfApp1
 
         private static void enableAllButtons()
         {
-            selectFileButton.IsEnabled = true;
-            selectFilesToSendButton.IsEnabled = true;
-            selectFolderToSendButton.IsEnabled = true;
-            openReceivedButton.IsEnabled = true;
+            if (window.IsVisible)
+            {
+                selectFileButton.IsEnabled = true;
+                selectFilesToSendButton.IsEnabled = true;
+                selectFolderToSendButton.IsEnabled = true;
+                openReceivedButton.IsEnabled = true;
+            }
         }
 
         private static void disableAllButtons()
         {
-            selectFileButton.IsEnabled = false;
-            selectFilesToSendButton.IsEnabled = false;
-            selectFolderToSendButton.IsEnabled = false;
-            openReceivedButton.IsEnabled = false;
+            if (window.IsVisible)
+            {
+                selectFileButton.IsEnabled = false;
+                selectFilesToSendButton.IsEnabled = false;
+                selectFolderToSendButton.IsEnabled = false;
+                openReceivedButton.IsEnabled = false;
+            }
         }
 
 
@@ -622,14 +648,14 @@ namespace WpfApp1
 
                     List<MyClass> newList = JsonConvert.DeserializeObject<List<MyClass>>(fileList);
                     
-                     window.Dispatcher.Invoke(() =>
+                     window.Dispatcher.BeginInvoke((Action)(() =>
                      {
                          NoFilesReceivedTextBlockOnListView.Text = "";
-                     });
+                     }));
                      foreach (MyClass file in newList)
                      {
                         file.fileName = new FileInfo(GetUniqueFilePath(preferences.getReceivingLocation(file.fileName, timeStamp) + "\\" + file.fileName)).Name;
-                        window.Dispatcher.Invoke((Action)(() =>
+                        window.Dispatcher.BeginInvoke((Action)(() =>
                         {
                             ReceivingFilesListViewItems.Add(new fileProgressClass()
                             {
@@ -732,15 +758,15 @@ namespace WpfApp1
                     }
                     FilesReceivingReceivingSize -= thread.FileCurrentReceivedSize;
                     thread.FileCurrentReceivedSize = 0;
-                    window.Dispatcher.Invoke(() => {
+                    window.Dispatcher.BeginInvoke((Action)(() => {
                         if (ProgressBar2.Value != overallProgress)
                         {
                             ProgressBar2.Value = overallProgress;
                         }
                         overallProgressPercentageLabel.Text = overallProgress.ToString() + "%";
                         relativeOverallProgressLabel.Text = getFormatSize(FilesReceivingReceivingSize) + " of " + getFormatSize(FilesReceivingTotalSize);
-                    });
-                    window.Dispatcher.Invoke(() =>
+                    }));
+                    window.Dispatcher.BeginInvoke((Action)(() =>
                     {
                         ProgressBar1.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 240, 173, 78));
                         ProgressBar2.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 240, 173, 78));
@@ -751,7 +777,7 @@ namespace WpfApp1
                                 progressBar.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 240, 173, 78));
                             }
                         }
-                    });
+                    }));
 
                     var globalLocation = ((thread.PointerLocation - 1) * threads) + threadNum;
                     ReceivingFilesListViewItems.ElementAt(globalLocation).downloadFailed = true;
@@ -768,7 +794,7 @@ namespace WpfApp1
                     isFolder = Boolean.Parse(thread.List.ElementAt(thread.PointerLocation - 1).isFolder);
                 }
                 thread.FileCurrentReceivedSize = 0;
-                ConnectedViewPanel.Dispatcher.Invoke(statusDownloading);
+                ConnectedViewPanel.Dispatcher.BeginInvoke(statusDownloading);
                 using (var dl = new Downloader(new Uri(fileURL), preferences.getReceivingLocation(fileName, timeStamp)  + System.IO.Path.DirectorySeparatorChar.ToString() + fileName, isFolder))
                 {
                     currFileName = fileName;
@@ -791,8 +817,8 @@ namespace WpfApp1
                 if (isReceiveComplete)
                 {
                     Console.WriteLine("Complete");
-                    ConnectedViewPanel.Dispatcher.Invoke(disable);
-                    ConnectedViewPanel.Dispatcher.Invoke(formClose);
+                    ConnectedViewPanel.Dispatcher.BeginInvoke(disable);
+                    ConnectedViewPanel.Dispatcher.BeginInvoke(formClose);
                     Console.WriteLine("Complete");
                     currFileName = "Transfer Complete";
                     bool hasErrors = false;
@@ -805,11 +831,11 @@ namespace WpfApp1
                     {
                         currFileName += "d with Errors";
                     }
-                    ConnectedViewPanel.Dispatcher.Invoke(displayFileName);
+                    ConnectedViewPanel.Dispatcher.BeginInvoke(displayFileName);
                 }
 
-                /*ConnectedViewPanel.Dispatcher.Invoke(disable);
-                ConnectedViewPanel.Dispatcher.Invoke(formClose);
+                /*ConnectedViewPanel.Dispatcher.BeginInvoke(disable);
+                ConnectedViewPanel.Dispatcher.BeginInvoke(formClose);
                 Console.WriteLine("Complete");
                 currFileName = "Transfer Complete";
                 bool hasErrors = false;
@@ -827,7 +853,7 @@ namespace WpfApp1
 
             if (threads == 1)
             {
-                ConnectedViewPanel.Dispatcher.Invoke(displayFileName);
+                ConnectedViewPanel.Dispatcher.BeginInvoke(displayFileName);
             }
         }
 
@@ -846,7 +872,7 @@ namespace WpfApp1
             //ToastNotificationManager.CreateToastNotifier(APP_ID).Update(data, "receiving-files");
             try
             {
-                ConnectedViewPanel.Dispatcher.Invoke(() =>
+                ConnectedViewPanel.Dispatcher.BeginInvoke((Action)(() =>
                 {
 
                     if (ProgressBar1.Value != fileProgress)
@@ -873,7 +899,7 @@ namespace WpfApp1
 
 
                     ReceivingFilesListViewItems.ElementAt(globalLocation).progressPercent = fileProgress;
-                });
+                }));
             }
             catch
             {
@@ -924,7 +950,7 @@ namespace WpfApp1
  
             try
             {
-                Dispatcher.Invoke(showQRCode);
+                Dispatcher.BeginInvoke(showQRCode);
             }
             catch (Exception)
             {
@@ -1058,11 +1084,11 @@ namespace WpfApp1
                                         if (isLighttheme)
                                         {
 
-                                            Dispatcher.Invoke(switchToLightTheme);
+                                            Dispatcher.BeginInvoke(switchToLightTheme);
                                         }
                                         else
                                         {
-                                            Dispatcher.Invoke(switchToDarkTheme);
+                                            Dispatcher.BeginInvoke(switchToDarkTheme);
                                         }
                                     }
                                 }
@@ -1116,7 +1142,7 @@ namespace WpfApp1
                 if (!SystemParameters.WindowGlassColor.Equals(accentColor))
                 {
                     accentColor = SystemParameters.WindowGlassColor;
-                    Dispatcher.Invoke(refreshAllAccentedItems);
+                    Dispatcher.BeginInvoke(refreshAllAccentedItems);
                 }
                  //   System.Diagnostics.Trace.WriteLine
                    //     (System.Diagnostics.Process.GetProcessesByName("FileWire").Length);
@@ -1243,11 +1269,11 @@ namespace WpfApp1
                             {
                                 if (o.Equals(1))
                                 {
-                                    window.Dispatcher.Invoke(switchToTransparentWindow);
+                                    window.Dispatcher.BeginInvoke(switchToTransparentWindow);
                                 }
                                 else
                                 {
-                                    window.Dispatcher.Invoke(switchToOpaqueWindow);
+                                    window.Dispatcher.BeginInvoke(switchToOpaqueWindow);
                                 }
                             }
                         }
@@ -1260,11 +1286,11 @@ namespace WpfApp1
             }
             else if (preferences.IsTransparencyEnabled().HasValue && preferences.IsTransparencyEnabled() == true)
             {
-                window.Dispatcher.Invoke(switchToTransparentWindow);
+                window.Dispatcher.BeginInvoke(switchToTransparentWindow);
             }
             else
             {
-                window.Dispatcher.Invoke(switchToOpaqueWindow);
+                window.Dispatcher.BeginInvoke(switchToOpaqueWindow);
             }
         }
 
@@ -1388,7 +1414,7 @@ namespace WpfApp1
             public void connectedSuccessfully(string ip)
             {
                 iPAddress = ip;
-                ConnectedViewPanel.Dispatcher.Invoke(connected);
+                ConnectedViewPanel.Dispatcher.BeginInvoke(connected);
 
             }
 
@@ -1406,7 +1432,7 @@ namespace WpfApp1
                         AvtarAndName na = JsonConvert.DeserializeObject<AvtarAndName>(s.Substring(s.IndexOf("<body>") + 6).Replace("</body></html>", ""));
                         MainWindow.connectedInfo = na;
                         new ToastContentBuilder().AddText("Connected Succesfully").AddText("Connected with " + connectedInfo.name).Show();
-                        label.Dispatcher.Invoke(displayConnectedDeviceInfo);
+                        label.Dispatcher.BeginInvoke(displayConnectedDeviceInfo);
                     }
                     catch (Exception e)
                     {
@@ -1419,7 +1445,7 @@ namespace WpfApp1
             {
                 MainWindow.mobilePort = mobilePort;
                 MainWindow.host = "http://" + iPAddress + ":" + mobilePort.ToString() + "/";
-                MainWindow.ConnectedViewPanel.Dispatcher.Invoke(incoming);
+                MainWindow.ConnectedViewPanel.Dispatcher.BeginInvoke(incoming);
             }
         }
 
@@ -1607,7 +1633,7 @@ namespace WpfApp1
         private void openFileSelectorClick(object sender, EventArgs e)
         {
 
-            Dispatcher.Invoke(disableButtons);
+            Dispatcher.BeginInvoke(disableButtons);
 
             CommonOpenFileDialog saveFileDialog1 = new CommonOpenFileDialog();
 
@@ -1670,13 +1696,13 @@ namespace WpfApp1
                 }
 
             }
-            Dispatcher.Invoke(enableButtons);
+            Dispatcher.BeginInvoke(enableButtons);
 
         }
 
         private void openFolderSelectorClick(object sender, EventArgs e)
         {
-            Dispatcher.Invoke(disableButtons);
+            Dispatcher.BeginInvoke(disableButtons);
 
             CommonOpenFileDialog saveFileDialog1 = new CommonOpenFileDialog();
 
@@ -1739,7 +1765,7 @@ namespace WpfApp1
                 }
 
             }
-            Dispatcher.Invoke(enableButtons);
+            Dispatcher.BeginInvoke(enableButtons);
 
         }
 
