@@ -15,11 +15,20 @@
     <Authors>Sugarsnooper</Authors>
     <PackageIcon>ic_logo_dark_playstore_without_bg.png</PackageIcon>
     <PackageIconUrl />
+    <PlatformTarget>x64</PlatformTarget>
+	  <DebugType>embedded</DebugType>
+	  <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+
+	  
+    <Deterministic>false</Deterministic>
+
+	  
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+
+	  
+    <FileVersion>1.0.1.54</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>

@@ -212,7 +212,6 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FileWire.runtimeconfig.dev.json
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FileWire.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\ref\FileWire.dll
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FileWire.pdb
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\DocumentFormat.OpenXml.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FluentWPF.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\log4net.dll
@@ -406,10 +405,5 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\WpfApp1.csproj.CopyComplete
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\FileWire.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\ref\FileWire.dll
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\FileWire.pdb
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\WpfApp1.genruntimeconfig.cache
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\Microsoft.Toolkit.Uwp.Notifications.dll
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FileWire.dll.manifest
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\FileWire.application
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\FileWire.dll.manifest
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\FileWire.application

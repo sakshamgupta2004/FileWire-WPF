@@ -13,8 +13,8 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sugarsnooper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+505419115e3847d8ca8be57bac185f2e8e0906dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

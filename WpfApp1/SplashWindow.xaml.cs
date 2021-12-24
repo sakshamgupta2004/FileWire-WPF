@@ -100,23 +100,14 @@ namespace WpfApp1
             }
             try
             {
-                var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\directory\shell", true);
-
-                if (key == null)
-                {
-                    key = Registry.CurrentUser.CreateSubKey(@"Software\Classes\directory\shell");
-                }
+                var key = Registry.CurrentUser.CreateSubKey(@"Software\Classes\directory\shell");
                 Properties.Resources.ic_logo_playstore.Save(File.Create(new Preferences().settingsDirectory + "appicon.ico"));
                 var key1 = key.CreateSubKey("Send via FileWire");
                 key1.SetValue("icon", new Preferences().settingsDirectory + "appicon.ico", RegistryValueKind.String);
                 var key2 = key1.CreateSubKey("command");
                 key2.SetValue("", new Preferences().settingsDirectory + "selectall.exe" + " \"%1\" \"" + AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName + "\" --SelectAllFiles $files --EndOfFiles");
 
-                key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", true);
-                if (key == null)
-                {
-                    key = Registry.CurrentUser.CreateSubKey(@"Software\Classes\*\shell");
-                }
+                key = Registry.CurrentUser.CreateSubKey(@"Software\Classes\*\shell");
                 key1 = key.CreateSubKey("Send via FileWire");
                 key1.SetValue("icon", new Preferences().settingsDirectory + "appicon.ico", RegistryValueKind.String);
                 key2 = key1.CreateSubKey("command");
@@ -135,11 +126,11 @@ namespace WpfApp1
                     foreach (var a in key.GetSubKeyNames())
                     {
                         var key1 = key.OpenSubKey(a, true);
-                        if (key1.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName))
+                        if (key1.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName) && a.ToLower().Equals("filewire-pc"))
                         {
 
-                            key1.SetValue("EstimatedSize", (MainWindow.DirSize(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory)) / 1024), RegistryValueKind.DWord);
-                            key1.SetValue("DisplayIcon", new Preferences().settingsDirectory + "appicon.ico");
+                            /*key1.SetValue("EstimatedSize", (MainWindow.DirSize(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory)) / 1024), RegistryValueKind.DWord);
+                            key1.SetValue("DisplayIcon", new Preferences().settingsDirectory + "appicon.ico");*/
                             var originalUninstallStringFile = new Preferences().settingsDirectory + "originalUninstallString";
                             var uninstallString = key1.GetValue("UninstallString").ToString();
                             //rundll32.exe dfshim.dll,ShArpMaintain FileWire.application, Culture=neutral, PublicKeyToken=47b224adbda73958, processorArchitecture=x86

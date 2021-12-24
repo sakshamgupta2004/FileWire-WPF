@@ -1,35 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
         "projectName": "FileWire",
-        "projectPath": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-        "packagesPath": "C:\\Users\\saksh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\saksh\\source\\repos\\WpfApp1\\WpfApp1\\obj\\publish\\win-x86\\",
+        "projectPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
+        "packagesPath": "C:\\Users\\Saksham\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\obj\\publish\\win-x86\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\saksh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Saksham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows"
+          "net5.0-windows10.0.18362.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0-windows7.0": {
-            "targetAlias": "net5.0-windows",
+          "net5.0-windows10.0.18362": {
+            "targetAlias": "net5.0-windows10.0.18362.0",
             "projectReferences": {}
           }
         },
@@ -40,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net5.0-windows10.0.18362": {
+          "targetAlias": "net5.0-windows10.0.18362.0",
           "dependencies": {
             "DocumentFormat.OpenXml": {
               "target": "Package",
@@ -51,9 +48,17 @@
               "target": "Package",
               "version": "[0.9.0, )"
             },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"
+            },
+            "Microsoft.Toolkit.Uwp.Notifications": {
+              "target": "Package",
+              "version": "[7.1.2, )"
             },
             "Microsoft.VisualStudio.Services.Client": {
               "target": "Package",
@@ -63,9 +68,9 @@
               "target": "Package",
               "version": "[1.1.0, )"
             },
-            "ModernWpfUIs": {
+            "ModernWpfUI": {
               "target": "Package",
-              "version": "[1.2.0, )"
+              "version": "[0.9.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -103,6 +108,10 @@
               "target": "Package",
               "version": "[1.1.1, )"
             },
+            "XamlFlair.WPF": {
+              "target": "Package",
+              "version": "[1.2.8, )"
+            },
             "ZXing.Net": {
               "target": "Package",
               "version": "[0.16.6, )"
@@ -124,27 +133,38 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[5.0.7, 5.0.7]"
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[5.0.7, 5.0.7]"
+              "name": "Microsoft.NETCore.App.Host.win-x86",
+              "version": "[5.0.13, 5.0.13]"
             },
             {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[5.0.7, 5.0.7]"
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.Windows.SDK.NET.Ref",
+              "version": "[10.0.18362.22, 10.0.18362.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
             }
           ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
+            "Microsoft.Windows.SDK.NET.Ref": {
+              "privateAssets": "all"
+            },
             "Microsoft.WindowsDesktop.App.WPF": {
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

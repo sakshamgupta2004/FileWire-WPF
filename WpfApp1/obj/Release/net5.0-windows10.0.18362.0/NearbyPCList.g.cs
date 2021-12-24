@@ -63,7 +63,7 @@ namespace WpfApp1 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FileWire;component/nearbypclist.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FileWire;V1.0.0.0;component/nearbypclist.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\NearbyPCList.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

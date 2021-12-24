@@ -1,20 +1,20 @@
 ﻿FileWire
-
+1.0.0.0
 
 winexe
 C#
 .cs
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\
-WpfApp1
+WpfApp1_2w2w4lqe_wpftmp
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+TRACE;RELEASE;NET;NET5_0;NETCOREAPP
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\App.xaml
 4793123172
 
-24-1654861811
-2331588491929
+29-202275467
+466-1117983438
 MainWindow.xaml;NearbyPCList.xaml;SplashWindow.xaml;Themes\Generic.xaml;
 
-False
+True
 
