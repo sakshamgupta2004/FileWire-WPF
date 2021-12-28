@@ -403,3 +403,5 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\ne
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\App.baml
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\WpfApp1.AssemblyInfoInputs.cache
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\WpfApp1.AssemblyInfo.cs
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.g.cs
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.baml

@@ -32,6 +32,8 @@ namespace WpfApp1
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
+            //new HiddenProgressOverlayWindow().Show();
+
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             registryKey.SetValue(AppDomain.CurrentDomain.FriendlyName, AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName + ".exe" + " --windowsStartup true");
             
@@ -153,34 +155,6 @@ namespace WpfApp1
             {
 
 
-                /*string currVersion = "null";
-                using (var key1 = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall", true))
-                {
-                    if (key1 != null)
-                    {
-                        foreach (var a in key1.GetSubKeyNames())
-                        {
-                            var key2 = key1.OpenSubKey(a);
-                            if (key2.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName) && a.ToLower().Equals("filewire-pc"))
-                            {
-                                currVersion = key2.GetValue("DisplayVersion", currVersion).ToString();
-                            }
-                        }
-                    }
-                }
-
-                RegistryKey key = Registry.CurrentUser.CreateSubKey("Software\\FileWire");
-                if (!key.GetValue("CurrentVersion", "1.0.0.0").Equals(currVersion))
-                {
-                    key.SetValue("CurrentVersion", currVersion);
-                    foreach (var process in Process.GetProcessesByName(AppDomain.CurrentDomain.FriendlyName))
-                    {
-                        if (!process.MainModule.FileName.Equals(AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName + ".exe"))
-                        {
-                            process.Kill();
-                        }
-                    }
-                }*/
                 if (!Debugger.IsAttached)
                 {
                     if (GetInstanceCount(AppDomain.CurrentDomain.FriendlyName) == 1)
@@ -189,7 +163,7 @@ namespace WpfApp1
                 Window wnd = new SplashWindow(arguments);
                 wnd.Show();
             }
-
+        
 
 
 

@@ -407,3 +407,5 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\ref\FileWire.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\WpfApp1.genruntimeconfig.cache
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Release\net5.0-windows10.0.18362.0\Microsoft.Toolkit.Uwp.Notifications.dll
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.g.cs
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Release\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.baml

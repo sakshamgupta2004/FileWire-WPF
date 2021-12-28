@@ -134,6 +134,7 @@ namespace WpfApp1
         private static string timeStamp;
         private static string currFileName = "";
         private static Boolean commandToDownload = true;
+        private static bool isLightMode = false;
         private static List<MyClass> list;
         private static string host = "";
         private static long FilesReceivingTotalSize = 0;
@@ -147,6 +148,7 @@ namespace WpfApp1
         private static Preferences preferences;
         private static ToastNotification progressToast;
         private static ToastContent progressToastContent;
+        private static HiddenProgressOverlayWindow progressOverlay = null;
 
         public static ObservableCollection<NearbyPC> NearbyPCList { get { return _NearbyPCList; } }
         public static ObservableCollection<NearbyPC> _NearbyPCList = new ObservableCollection<NearbyPC>();
@@ -171,8 +173,14 @@ namespace WpfApp1
         }
 
 
+
         private static void hideQrCodeAndShowUI()
         {
+
+            preferences = new Preferences();
+            overallProgress = 0;
+            FilesReceivingReceivingSize = 0;
+            FilesReceivingTotalSize = 0;
             if (window.IsVisible)
             {
                 if (dialog != null)
@@ -261,6 +269,15 @@ namespace WpfApp1
 
         private static void incomingFile()
         {
+            if (progressOverlay == null)
+            {
+                progressOverlay = new HiddenProgressOverlayWindow();
+                if (isLightMode)
+                    progressOverlay.setLightColors();
+                else
+                    progressOverlay.setDarkColors();
+                progressOverlay.Show();
+            }
             checkAndCreateDirectoryForApplication();
             System.Net.WebRequest.DefaultWebProxy = null;
 
@@ -331,6 +348,8 @@ namespace WpfApp1
 
         private static void disableProgress()
         {
+            progressOverlay.Close();
+            progressOverlay = null;
             if (window.IsVisible)
             {
                 ProgressBar1.Value = 100;
@@ -361,6 +380,9 @@ namespace WpfApp1
                 new ToastContentBuilder()
                     .AddText(connectedInfo.name)
                     .AddText("Files Transferred with Errors")
+                    .AddButton(new ToastButton()
+                        .SetContent("Show Files")
+                        .AddArgument("action", "showReceived").SetBackgroundActivation())
                     .Show();
             }
             else
@@ -368,9 +390,14 @@ namespace WpfApp1
                 new ToastContentBuilder()
                     .AddText(connectedInfo.name)
                     .AddText("File Transfer Complete")
+                    .AddButton(new ToastButton()
+                        .SetContent("Show Files")
+                        .AddArgument("action", "showReceived").SetBackgroundActivation())
                     .Show();
+                
             }
         }
+        
 
         private static void changeProgress()
         {
@@ -405,6 +432,13 @@ namespace WpfApp1
             MainWindow.args = args;
             //ApplicationDeployment
             preferences = new Preferences();
+            ToastNotificationManagerCompat.OnActivated += (args) =>
+            {
+                if (args.Argument.Equals("action=showReceived"))
+                {
+                    Process.Start("explorer.exe", preferences.getReceivingBaseLocation(timeStamp));
+                }
+            };
             XamlFlair.Animations.OverrideDefaultSettings(duration: 750, easing: EasingType.Quintic);
             InitializeComponent();
             DateTime time = DateTime.Now;
@@ -865,7 +899,7 @@ namespace WpfApp1
             var fileProgress = (int)((thread.FileCurrentReceivedSize * 100) / long.Parse(thread.List.ElementAt(thread.PointerLocation - 1).fileSize));
             FilesReceivingReceivingSize += e.BytesReceived;
             overallProgress = (int)((FilesReceivingReceivingSize * 100) / FilesReceivingTotalSize);
-            
+            progressOverlay.setProgress(overallProgress, getFormatSize(FilesReceivingReceivingSize) + " of " + getFormatSize(FilesReceivingTotalSize));
             //var data = new NotificationData();
             //data.Values["progressValue"] = (((Double)overallProgress) / 100.0).ToString();
             //data.Values["progressValueString"] = overallProgress.ToString() + "%";
@@ -1154,6 +1188,11 @@ namespace WpfApp1
 
         private static void setLightColors()
         {
+            isLightMode = true;
+            if (progressOverlay != null)
+            {
+                progressOverlay.setLightColors();
+            }
             MaterialDesignThemes.Wpf.ThemeAssist.SetTheme(window, MaterialDesignThemes.Wpf.BaseTheme.Light);
             AcrylicWindow.SetTintColor(window, System.Windows.Media.Color.FromArgb(255, 255, 255, 255));
             backgroundImage.Source = new BitmapImage(new Uri("Resources/background.jpeg", UriKind.Relative));
@@ -1186,6 +1225,11 @@ namespace WpfApp1
 
         private static void setDarkColors()
         {
+            isLightMode = false;
+            if (progressOverlay != null)
+            {
+                progressOverlay.setDarkColors();
+            }
             MaterialDesignThemes.Wpf.ThemeAssist.SetTheme(window, MaterialDesignThemes.Wpf.BaseTheme.Dark);
             AcrylicWindow.SetTintColor(window, System.Windows.Media.Color.FromArgb(255, 0, 0, 0));
             backgroundImage.Source = new BitmapImage(new Uri("Resources/background_dark.jpg", UriKind.Relative));
