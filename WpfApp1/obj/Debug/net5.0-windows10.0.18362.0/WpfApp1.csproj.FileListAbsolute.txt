@@ -385,7 +385,6 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Debug\ne
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Debug\net5.0-windows10.0.18362.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Debug\net5.0-windows10.0.18362.0\Microsoft.Windows.SDK.NET.dll
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Debug\net5.0-windows10.0.18362.0\WinRT.Runtime.dll
-C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\WpfApp1.csproj.AssemblyReference.cache
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\MainWindow.baml
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\NearbyPCList.baml
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\SplashWindow.baml
@@ -405,3 +404,5 @@ C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\ne
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\WpfApp1.AssemblyInfo.cs
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.g.cs
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\HiddenProgressOverlayWindow.baml
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\bin\Debug\net5.0-windows10.0.18362.0\MicaWPF.dll
+C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\WpfApp1.csproj.AssemblyReference.cache

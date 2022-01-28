@@ -50,7 +50,7 @@ namespace WpfApp1
     /// 
 
     
-    public partial class MainWindow : AcrylicWindow
+    public partial class MainWindow
     {
         private const String APP_ID = "Sugarsnooper.FileWire";
 
@@ -103,7 +103,7 @@ namespace WpfApp1
         private static TextBlock NoFilesReceivedTextBlockOnListView;
         private static TextBlock NoFilesSentTextBlockOnListView;
 
-        public static AcrylicWindow window;
+        public static Window window;
 
         private static SolidColorBrush plusIconTint;
         private static SolidColorBrush gearIconTint;
@@ -430,7 +430,14 @@ namespace WpfApp1
         public MainWindow(Dictionary<string, string> args, bool isBackground = false)
         {
             MainWindow.args = args;
-            //ApplicationDeployment
+            /*if (MicaWPF.Helpers.OsHelper.GetOsVersion() != MicaWPF.OsVersion.Windows11After22523)
+            {
+                AcrylicWindow.SetEnabled(this, true);
+            }
+            else
+            {
+                AcrylicWindow.SetEnabled(this, false);
+            }*/
             preferences = new Preferences();
             ToastNotificationManagerCompat.OnActivated += (args) =>
             {
@@ -1264,13 +1271,16 @@ namespace WpfApp1
         private static void makeWindowOpaque()
         {
             AcrylicWindow.SetTintOpacity(window, 1);
-            backgroundImage.Opacity = 1;
+            backgroundImage.Opacity = 0.99;
         }
 
         private static void makeWindowTransparent()
         {
             AcrylicWindow.SetTintOpacity(window, 0.5);
-            backgroundImage.Opacity = 0.51;
+            if (MicaWPF.Helpers.OsHelper.GetOsVersion() != MicaWPF.OsVersion.Windows11After22523 && MicaWPF.Helpers.OsHelper.GetOsVersion() != MicaWPF.OsVersion.Windows11Before22523)
+                backgroundImage.Opacity = 0.51;
+            else
+                backgroundImage.Opacity = 0.2;
         }
 
         private static void RefreshAccentedItems()

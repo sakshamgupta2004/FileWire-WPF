@@ -46,11 +46,15 @@
             },
             "FluentWPF": {
               "target": "Package",
-              "version": "[0.9.0, )"
+              "version": "[0.10.2, )"
             },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.1.0, )"
+            },
+            "MicaWPF": {
+              "target": "Package",
+              "version": "[1.3.2, )"
             },
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",

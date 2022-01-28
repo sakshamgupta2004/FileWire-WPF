@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\obj\Debug\net5.0-windows10.0.18362.0\
-WpfApp1
+WpfApp1_r3zuah3q_wpftmp
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+TRACE;RELEASE;NET;NET5_0;NETCOREAPP
 C:\Users\Saksham\Source\Repos\sakshamgupta2004\FileWire-WPF\WpfApp1\App.xaml
 5-1702822000
 
-251112290455
-2331588491929
+311485582887
+468-1010235070
 HiddenProgressOverlayWindow.xaml;MainWindow.xaml;NearbyPCList.xaml;SplashWindow.xaml;Themes\Generic.xaml;
 
-False
+True
 
