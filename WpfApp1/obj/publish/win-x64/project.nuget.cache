@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6nfQN18yXPh7uREUWHlftMO6FR5S2JnyH1VH3Xhu4qnRXlSLgmWafN4kQAxADuVuQL3D0VKWXY1iZihnSzn2DA==",
+  "dgSpecHash": "RvMdYgtifyCQjVGdd7ZSJKaVlQLnQTTZ9TfYvkKLCwXCP1lF9ExIPpor3zBHLCDAKX4tdQotak9RhVABzIMYeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Saksham\\.nuget\\packages\\documentformat.openxml\\2.13.0\\documentformat.openxml.2.13.0.nupkg.sha512",
     "C:\\Users\\Saksham\\.nuget\\packages\\fluentwpf\\0.9.0\\fluentwpf.0.9.0.nupkg.sha512",
@@ -166,8 +166,11 @@
     "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.22\\microsoft.windows.sdk.net.ref.10.0.18362.22.nupkg.sha512",
-    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.13\\microsoft.netcore.app.runtime.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.13\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.13\\microsoft.aspnetcore.app.runtime.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512",
+    "C:\\Users\\Saksham\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.18362.22\\microsoft.windows.sdk.net.ref.10.0.18362.22.nupkg.sha512"
   ],
   "logs": [
     {

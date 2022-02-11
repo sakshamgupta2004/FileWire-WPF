@@ -1,12 +1,14 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using WpfApp1;
+using static System.Environment;
 
 namespace FileWire
 {
@@ -128,6 +130,117 @@ namespace FileWire
             }));
             t.IsBackground = true;
             t.Start();
+            var t1 = new Thread(new ThreadStart(() =>
+            {
+                mobileDiscoveryServer(productId, hiddenwindow);
+            }));
+            t1.IsBackground = true;
+            t1.Start();
+
+
+        }
+
+
+
+        private static void mobileDiscoveryServer(string prodId, MainWindow hiddenWin)
+        {
+            while (true)
+            {
+                String add = "";
+                System.Net.IPAddress[] ad = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
+                foreach (System.Net.IPAddress ip in ad)
+                {
+                    add += ip.ToString() + "\n";
+                }
+                bool connected;
+                if (add.Trim(' ').Length == 0)
+                {
+                    connected = false;
+                }
+                else
+                {
+                    connected = true;
+                }
+                if (connected)
+                {
+
+
+                    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, MainWindow.GetAvailablePort(36000));
+                    using (UdpClient newsock = new UdpClient(ipep))
+                    {
+
+
+                        IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                        byte[] data = newsock.Receive(ref sender);
+
+
+                        new Thread(new ThreadStart(() =>
+                        {
+
+                            string receivedAdd = Encoding.ASCII.GetString(data);
+                            if (receivedAdd.StartsWith("MobileFileWire"))
+                            {
+                                receivedAdd = receivedAdd.Substring(15);
+                            }
+                            string[] RemoveDuplicates(string[] s)
+                            {
+                                HashSet<string> set = new HashSet<string>(s);
+                                string[] result = new string[set.Count];
+                                set.CopyTo(result);
+                                return result;
+                            }
+                            var adds = RemoveDuplicates(receivedAdd.Split("\n"));
+                            int port = 0;
+
+                            foreach (string s in adds)
+                            {
+                                if (!s.StartsWith("Port:"))
+                                {
+                                    try
+                                    {
+                                        String addtoSend = "";
+                                        System.Net.IPAddress[] ad1 = System.Net.Dns.GetHostByName(System.Net.Dns.GetHostName()).AddressList;
+                                        foreach (System.Net.IPAddress ip in ad1)
+                                        {
+                                            addtoSend += ip.ToString() + ":" + hiddenWin.getThisPCPort().ToString() + ";";
+                                        }
+
+                                        //"http://" + s + ":" + port + "/pcavailable:" + Encoding.UTF8.GetString(Encoding.Default.GetBytes(prodId + ";" + addtoSend));
+                                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                                        WebRequest webRequest = WebRequest.CreateHttp("http://" + s + ":" + port + "/compavailable:" + Encoding.UTF8.GetString(Encoding.Default.GetBytes(prodId + ";" + addtoSend)));
+                                        webRequest.Timeout = 500;
+                                        try
+                                        {
+                                            WebResponse response = webRequest.GetResponse();
+                                            response.Close();
+                                        }
+                                        catch { }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                    }
+                                }
+                                else
+                                {
+                                    port = Int32.Parse(s.Substring(5));
+                                }
+
+                            }
+
+                        })).Start();
+                    }
+                }
+            }
+        }
+
+    }
+    class MyWebClient : WebClient
+    {
+        protected override WebRequest GetWebRequest(Uri uri)
+        {
+            WebRequest w = base.GetWebRequest(uri);
+            w.Timeout = 3 * 1000;
+            return w;
         }
     }
 }

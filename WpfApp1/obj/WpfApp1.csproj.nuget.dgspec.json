@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
         "projectName": "FileWire",
-        "projectPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
+        "projectPath": "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\WpfApp1.csproj",
         "packagesPath": "C:\\Users\\Saksham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Saksham\\Source\\Repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\obj\\",
+        "outputPath": "C:\\Users\\Saksham\\source\\repos\\sakshamgupta2004\\FileWire-WPF\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Saksham\\AppData\\Roaming\\NuGet\\NuGet.Config",
