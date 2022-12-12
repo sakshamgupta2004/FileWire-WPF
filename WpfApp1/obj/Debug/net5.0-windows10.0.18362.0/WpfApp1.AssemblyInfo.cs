@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sugarsnooper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.54")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+091e239a3fc76535173fa34798c0864263f3717d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fffaafdf92d41512603c5b3de5d88a0fc54c1e7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

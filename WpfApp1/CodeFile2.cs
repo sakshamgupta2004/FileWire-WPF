@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using ModernWpf.Controls;
 using System.Net.NetworkInformation;
+using Microsoft.VisualBasic.Logging;
 using Microsoft.Win32;
 
 namespace FileWire
@@ -300,6 +301,13 @@ namespace FileWire
                     {
                         sendListener = new FileSendListener(){
                     file = new fileProgressClass()
+                    {
+                        fileName = Path.GetFileName(filePath),
+                        fileSize = ((attr & FileAttributes.Directory) != FileAttributes.Directory)? new FileInfo(filePath).Length.ToString():MainWindow.DirSize(new DirectoryInfo(filePath)).ToString(),
+                        isFolder = "true",
+                        id = "0. ",
+                        progressPercent = 0
+                    }
                     };
                     }
 
@@ -317,6 +325,7 @@ namespace FileWire
                         }
                         catch (Exception e)
                         {
+                            Logging.createNew("Error Sending", e.ToString());
                             sendListener.sendFailed(e);
                         }
 
@@ -497,7 +506,7 @@ namespace FileWire
             }
         }
 
-        private static async Task<String> canGetNameAndAvatar(String connection)
+        public static async Task<String> canGetNameAndAvatar(String connection)
         {
             String link = connection + "getAvatarAndName";
             link = link.Replace(" ", "%20");

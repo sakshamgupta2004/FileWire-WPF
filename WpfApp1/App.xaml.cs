@@ -32,6 +32,7 @@ namespace WpfApp1
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
+            Logging.createNew("I was on", "");
             //new HiddenProgressOverlayWindow().Show();
 
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -78,92 +79,160 @@ namespace WpfApp1
             }
 
 
-            string filesString = "";
+            
 
-            bool hasSelectedFiles = false;
+            bool hasFilesToSendToConn = false;
             int index = 0;
             foreach (var s in args)
             {
-                if (s.Equals("--SelectAllFiles"))
+                if (s.Equals("--SendAllFiles"))
                 {
-                    hasSelectedFiles = true;
+                    hasFilesToSendToConn = true;
                 }
-                if (hasSelectedFiles && (!s.Equals("--SelectAllFiles")))
+                if (hasFilesToSendToConn && (!s.Equals("--SendAllFiles")))
                 {
                     if (s.Equals("--EndOfFiles"))
                     {
-                        break;
+                        try
+                        {
+                            Registry.CurrentUser.CreateSubKey("Software\\Filewire\\Files\\Send").Close();
+                        }
+                        catch
+                        {
+                            
+                        }
+
+                        Environment.Exit(Environment.ExitCode);
                     }
                     else
                     {
-                        filesString += s;
-                        filesString += "\n";
+                        try
+                        {
+                            using (var reg = Registry.CurrentUser.CreateSubKey("Software\\Filewire\\Files"))
+                            {
+                                reg.SetValue("File " + index.ToString(), s);
+                            }
+                        }
+                        catch
+                        {
+                            
+                        }
                     }
                 }
                 index++;
             }
 
-            if (hasSelectedFiles)
+
+
+
+
+
+            if (!hasFilesToSendToConn)
             {
-                arguments = new Dictionary<string, string>();
-                arguments.Add("Files", filesString);
-            }
-            if (arguments.ContainsKey("Uninstall"))
-            {
-                var originalUninstallStringFile = new Preferences().settingsDirectory + "originalUninstallString";
-                var fs = File.OpenRead(originalUninstallStringFile);
-                byte[] fileContent = new byte[fs.Length];
-                fs.Read(fileContent);
-                fs.Close();
-                var processInfo = new ProcessStartInfo();
-                processInfo.Arguments = "/C " + Encoding.UTF8.GetString(fileContent);
-                processInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                processInfo.CreateNoWindow = true;
-                processInfo.FileName = "CMD.exe";
-                Process.Start(processInfo);
-                try
+                string filesString = "";
+
+                bool hasSelectedFiles = false;
+                index = 0;
+                foreach (var s in args)
                 {
-                    using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\directory\shell", true))
+                    if (s.Equals("--SelectAllFiles"))
                     {
-                        key.DeleteSubKeyTree("Send via FileWire");
+                        hasSelectedFiles = true;
                     }
-                    using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", true))
-                    {
-                        key.DeleteSubKeyTree("Send via FileWire");
-                    }
-                    registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    registryKey.DeleteValue(AppDomain.CurrentDomain.FriendlyName);
 
-                    using (var key = Registry.CurrentUser.OpenSubKey("software", true))
+                    if (hasSelectedFiles && (!s.Equals("--SelectAllFiles")))
                     {
-                        key.DeleteSubKeyTree("Filewire");
+                        if (s.Equals("--EndOfFiles"))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            filesString += s;
+                            filesString += "\n";
+                        }
                     }
-                    //   Directory.Delete(new Preferences().settingsDirectory, true);
 
+                    index++;
                 }
-                catch
+
+                if (hasSelectedFiles)
+                {
+                    arguments = new Dictionary<string, string>();
+                    arguments.Add("Files", filesString);
+                }
+
+
+                if (arguments.ContainsKey("Uninstall"))
+                {
+                    var originalUninstallStringFile = new Preferences().settingsDirectory + "originalUninstallString";
+                    var fs = File.OpenRead(originalUninstallStringFile);
+                    byte[] fileContent = new byte[fs.Length];
+                    fs.Read(fileContent);
+                    fs.Close();
+                    var processInfo = new ProcessStartInfo();
+                    processInfo.Arguments = "/C " + Encoding.UTF8.GetString(fileContent);
+                    processInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    processInfo.CreateNoWindow = true;
+                    processInfo.FileName = "CMD.exe";
+                    Process.Start(processInfo);
+                    try
+                    {
+                        using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\directory\shell", true))
+                        {
+                            key.DeleteSubKeyTree("Send via FileWire");
+                        }
+
+                        using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Classes\*\shell", true))
+                        {
+                            key.DeleteSubKeyTree("Send via FileWire");
+                        }
+
+                        registryKey =
+                            Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                        registryKey.DeleteValue(AppDomain.CurrentDomain.FriendlyName);
+
+                        using (var key = Registry.CurrentUser.OpenSubKey("software", true))
+                        {
+                            key.DeleteSubKeyTree("Filewire");
+                        }
+                        //   Directory.Delete(new Preferences().settingsDirectory, true);
+
+                    }
+                    catch
+                    {
+
+                    }
+
+                    Environment.Exit(Environment.ExitCode);
+                }
+
+                if (arguments.ContainsKey("windowsStartup"))
+                {
+                    try
+                    {
+                        using (var reg = Registry.CurrentUser.CreateSubKey("Software\\FileWire"))
+                        {
+                            reg.DeleteSubKeyTree("Files");
+                        }
+                    }catch{}
+                    BackgroundVisibility.run();
+                }
+                else
                 {
 
-                }
-                Environment.Exit(Environment.ExitCode);
-            }
-            if (arguments.ContainsKey("windowsStartup"))
-            {
-                BackgroundVisibility.run();
-            }
-            else
-            {
 
+                    if (!Debugger.IsAttached)
+                    {
+                        if (GetInstanceCount(AppDomain.CurrentDomain.FriendlyName) == 1)
+                            Process.Start(AppDomain.CurrentDomain.FriendlyName, "--windowsStartup true");
+                    }
 
-                if (!Debugger.IsAttached)
-                {
-                    if (GetInstanceCount(AppDomain.CurrentDomain.FriendlyName) == 1)
-                        Process.Start(AppDomain.CurrentDomain.FriendlyName, "--windowsStartup true");
+                    Window wnd = new SplashWindow(arguments);
+                    wnd.Show();
                 }
-                Window wnd = new SplashWindow(arguments);
-                wnd.Show();
             }
-        
+
 
 
 
