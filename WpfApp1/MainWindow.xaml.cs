@@ -177,6 +177,10 @@ namespace WpfApp1
         private static void hideQrCodeAndShowUI()
         {
 
+            foreach (var item in ReceivingFilesListViewItems)
+            {
+                item.downloadFailed = false;
+            }
             preferences = new Preferences();
             overallProgress = 0;
             FilesReceivingReceivingSize = 0;
