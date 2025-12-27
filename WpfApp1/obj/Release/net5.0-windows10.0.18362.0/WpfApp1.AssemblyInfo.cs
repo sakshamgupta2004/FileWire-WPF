@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sugarsnooper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.54")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.1.55")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileWire")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileWire")]

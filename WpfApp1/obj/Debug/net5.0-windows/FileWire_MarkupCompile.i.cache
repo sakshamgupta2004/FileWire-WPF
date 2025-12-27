@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\saksh\source\repos\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\
+C:\Users\saksh\source\repos\FileWire-WPF-main\WpfApp1\obj\Debug\net5.0-windows\
 WpfApp1
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\saksh\source\repos\WpfApp1\WpfApp1\App.xaml
-2123261073
+TRACE;DEBUG;NET;NET5_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\saksh\source\repos\FileWire-WPF-main\WpfApp1\App.xaml
+5-1702822000
 
-19416883056
-315-1327045833
-MainWindow.xaml;SplashWindow.xaml;
+29-1876614540
+3252072374894
+HiddenProgressOverlayWindow.xaml;MainWindow.xaml;NearbyPCList.xaml;SplashWindow.xaml;Themes\Generic.xaml;
 
-False
+True
 

@@ -206,7 +206,18 @@
           }
         }
       },
+      "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+        "runtime": {
+          "lib/Microsoft.WindowsAPICodePack.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
       "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
+        "dependencies": {
+          "Microsoft.WindowsAPICodePack-Core": "1.1.0"
+        },
         "runtime": {
           "lib/Microsoft.WindowsAPICodePack.Shell.dll": {
             "assemblyVersion": "1.1.0.0",
@@ -349,6 +360,12 @@
           },
           "lib/net5.0-windows10.0.18362.0/fi-FI/ModernWpf.resources.dll": {
             "locale": "fi-FI"
+          },
+          "lib/net5.0-windows10.0.18362.0/fil-PH/ModernWpf.Controls.resources.dll": {
+            "locale": "fil-PH"
+          },
+          "lib/net5.0-windows10.0.18362.0/fil-PH/ModernWpf.resources.dll": {
+            "locale": "fil-PH"
           },
           "lib/net5.0-windows10.0.18362.0/fr-CA/ModernWpf.Controls.resources.dll": {
             "locale": "fr-CA"
@@ -2424,6 +2441,13 @@
       "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
       "path": "microsoft.win32.systemevents/5.0.0",
       "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.WindowsAPICodePack-Core/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jU5Y9fvuC/USod2RCCHhs1PJ/T5ANBIXPhNpew53s5SDfRzvIE97XcIt9U8Wm+DF0bTJAdF9v9PD0cgbTi7uMg==",
+      "path": "microsoft.windowsapicodepack-core/1.1.0",
+      "hashPath": "microsoft.windowsapicodepack-core.1.1.0.nupkg.sha512"
     },
     "Microsoft.WindowsAPICodePack-Shell/1.1.0": {
       "type": "package",

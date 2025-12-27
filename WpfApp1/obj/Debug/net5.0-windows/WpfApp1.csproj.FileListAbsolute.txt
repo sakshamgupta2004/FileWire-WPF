@@ -62,3 +62,4 @@ C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\Debug\net5.0-windows\Microsoft.E
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\Debug\net5.0-windows\System.Reactive.dll
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\bin\Debug\net5.0-windows\XamlFlair.WPF.dll
 C:\Users\saksh\source\repos\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\WpfApp1.sourcelink.json
+C:\Users\saksh\source\repos\FileWire-WPF-main\WpfApp1\obj\Debug\net5.0-windows\FileWire.dll

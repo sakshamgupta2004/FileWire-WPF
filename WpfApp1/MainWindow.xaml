@@ -239,7 +239,7 @@
 
         <Image 
                Name="background_img"
-               Opacity="0.5" HorizontalAlignment="Stretch"
+               Opacity="1" HorizontalAlignment="Stretch"
                VerticalAlignment="Stretch"
                Stretch="UniformToFill"></Image>
 

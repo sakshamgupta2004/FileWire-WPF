@@ -1,4 +1,5 @@
 ﻿using FileWire;
+using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -126,7 +128,8 @@ namespace WpfApp1
                     foreach (var a in key.GetSubKeyNames())
                     {
                         var key1 = key.OpenSubKey(a, true);
-                        if (key1.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName) && a.ToLower().Equals("filewire-pc"))
+                        if (key1.GetValue("DisplayName") == null) { }
+                        else if (key1.GetValue("DisplayName").ToString().StartsWith(AppDomain.CurrentDomain.FriendlyName) && a.ToLower().Equals("filewire-pc"))
                         {
 
                             /*key1.SetValue("EstimatedSize", (MainWindow.DirSize(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory)) / 1024), RegistryValueKind.DWord);
@@ -255,8 +258,9 @@ namespace WpfApp1
                 Duration = new Duration(TimeSpan.FromMilliseconds(1500))
             };
             anim.Completed += OpenMainWindow;
+
             this.BeginAnimation(Window.OpacityProperty, anim);
-            
+
         }
 
         private void setLightColors()

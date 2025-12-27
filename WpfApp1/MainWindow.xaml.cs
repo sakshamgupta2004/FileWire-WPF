@@ -41,7 +41,7 @@ using Path = System.IO.Path;
 using System.Text.RegularExpressions;
 using DataFormats = System.Windows.DataFormats;
 using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.UI.Notifications;
+//using Windows.UI.Notifications;
 using DocumentFormat.OpenXml.Drawing;
 using Microsoft.VisualBasic.Logging;
 using RegistryUtils;
@@ -152,8 +152,8 @@ namespace WpfApp1
         private static int threadsMade = 0;
         private static AvtarAndName connectedInfo;
         private static Preferences preferences;
-        private static ToastNotification progressToast;
-        private static ToastContent progressToastContent;
+        //private static ToastNotification progressToast;
+        //private static ToastContent progressToastContent;
         private static HiddenProgressOverlayWindow progressOverlay = null;
 
         public static ObservableCollection<NearbyPC> NearbyPCList
@@ -384,36 +384,36 @@ namespace WpfApp1
             var t = new Thread(new ThreadStart(run));
             t.IsBackground = true;
             t.Start();
-            //  progressToast = new ToastContentBuilder();
+             // var progressToast = new ToastContentBuilder();
 
-            /* progressToast.AddText("Receiving Files from " + connectedInfo.name);
-             progressToast.AddVisualChild(new AdaptiveProgressBar()
-             {
-                 Title = "Transfer Progress",
-                 Value = Double.Parse(overallProgress.ToString())/100.0,
-                 ValueStringOverride = overallProgress + "%",
-                 Status = "Receiving"
-             });
-             progressToast.Show();*/
+             //progressToast.AddText("Receiving Files from " + connectedInfo.name);
+             //progressToast.AddVisualChild(new AdaptiveProgressBar()
+             //{
+             //    Title = "Transfer Progress",
+             //    Value = Double.Parse(overallProgress.ToString())/100.0,
+             //    ValueStringOverride = overallProgress + "%",
+             //    Status = "Receiving"
+             //});
+             //progressToast.Show();
 
 
 
-            progressToastContent = new ToastContentBuilder()
-                .AddText("Receiving Files from " + connectedInfo.name)
-                .AddVisualChild(new AdaptiveProgressBar()
-                {
-                    Title = "Transfer Progress",
-                    Value = new BindableProgressBarValue("progressValue"),
-                    ValueStringOverride = new BindableString("progressValueString"),
-                    Status = "Receiving Files"
-                })
-                .GetToastContent();
-            progressToast = new ToastNotification(progressToastContent.GetXml());
-            progressToast.Tag = "receiving-files";
-            progressToast.Data = new NotificationData();
-            progressToast.Data.Values["progressValue"] = "0.0";
-            progressToast.Data.Values["progressValueString"] = "0%";
-            progressToast.Data.SequenceNumber = 0;
+            //var progressToastContent = new ToastContentBuilder()
+            //    .AddText("Receiving Files from " + connectedInfo.name)
+            //    .AddVisualChild(new AdaptiveProgressBar()
+            //    {
+            //        Title = "Transfer Progress",
+            //        Value = new BindableProgressBarValue("progressValue"),
+            //        ValueStringOverride = new BindableString("progressValueString"),
+            //        Status = "Receiving Files"
+            //    })
+            //    .GetToastContent();
+            //progressToast = new ToastNotification(progressToastContent.GetXml());
+            //progressToast.Tag = "receiving-files";
+            //progressToast.Data = new NotificationData();
+            //progressToast.Data.Values["progressValue"] = "0.0";
+            //progressToast.Data.Values["progressValueString"] = "0%";
+            //progressToast.Data.SequenceNumber = 0;
             // ToastNotificationManager.CreateToastNotifier(APP_ID).Show(progressToast);
         }
 
@@ -1545,6 +1545,7 @@ namespace WpfApp1
 
         private static void autoSetTransparency()
         {
+
             if (preferences.IsTransparencyAutomatic())
             {
                 try

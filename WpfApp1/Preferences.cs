@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Shell;
+﻿using Microsoft.VisualStudio.Services.Common.CommandLine.Validation;
+using Microsoft.WindowsAPICodePack.Shell;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -148,7 +149,12 @@ namespace WpfApp1
 
         private void refreshTransparencySetting()
         {
-            string a = getPreference("TransparencySetting", "0");
+            var DefaultVal = 0;
+            if (OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000))
+            {
+                DefaultVal = 2;
+            }
+            string a = getPreference("TransparencySetting", DefaultVal.ToString());
             int val = int.Parse(a);
 
             if (val == 0)
